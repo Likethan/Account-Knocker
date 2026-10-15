@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
-from .routers import auth, accounts, security, chat, oauth
+from .routers import auth, accounts, security, chat, oauth, health
 import asyncio
 from .services.scheduler import run_periodic_scans
 
@@ -51,6 +51,7 @@ app.include_router(accounts.router)
 app.include_router(security.router)
 app.include_router(chat.router)
 app.include_router(oauth.router)
+app.include_router(health.router)
 
 @app.get("/")
 def read_root():
